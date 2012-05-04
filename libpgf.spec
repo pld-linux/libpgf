@@ -19,6 +19,7 @@ BuildRequires:	automake
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	libtool
+BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
