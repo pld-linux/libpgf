@@ -7,12 +7,12 @@ Summary(pl.UTF-8):	Biblioteka PGF
 Summary(pt_BR.UTF-8):	Biblioteca PGF
 Summary(tr.UTF-8):	PGF kitaplığı
 Name:		libpgf
-Version:	6.11.24
+Version:	6.11.42
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libpgf/%{name}-%{version}-src.zip
-# Source0-md5:	ba197ba886664a9b6f7b9757f5a2fb42
+# Source0-md5:	9a3c700f0b3e36755f9044a348d6e0ce
 URL:		http://www.libpgf.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libpgf.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpgf.so.3
+%attr(755,root,root) %ghost %{_libdir}/libpgf.so.4
 
 %files devel
 %defattr(644,root,root,755)
