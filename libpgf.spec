@@ -1,11 +1,6 @@
 %bcond_without	tests
-Summary:	PGF library
-Summary(de.UTF-8):	PGF-Library
-Summary(es.UTF-8):	Biblioteca PGF
-Summary(fr.UTF-8):	Librarie PGF
-Summary(pl.UTF-8):	Biblioteka PGF
-Summary(pt_BR.UTF-8):	Biblioteca PGF
-Summary(tr.UTF-8):	PGF kitaplığı
+Summary:	PGF image format library
+Summary(pl.UTF-8):	Biblioteka obsługująca format plików PGF
 Name:		libpgf
 Version:	6.11.42
 Release:	1
@@ -23,22 +18,30 @@ BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A new image file format, based on discrete, fast wavelet transform
-with progressive coding features. Lossless and lossy compression. Best
-for natural and aerial images. For such images with a better
-compression efficiency than JPEG. PGF is one of the best algorithms
-available these days for compression of natural images.
+PGF is a new image file format, based on discrete, fast wavelet
+transform with progressive coding features. Lossless and lossy
+compression. Best for natural and aerial images. For such images with
+a better compression efficiency than JPEG. PGF is one of the best
+algorithms available these days for compression of natural images.
+
+%description -l pl.UTF-8
+PGF to nowy format plików obrazów, oparty na dyskretnej, szybkiej
+transformacie falkowej połączonej z kodowaniem progresywnym. Kompresja
+może być bezstratna, jak i stratna. Format jest najlepszy dla obrazów
+naturalnych i lotniczych.  Dla takich obrazów osiąga się lepszą
+wydajność kompresji niż format JPEG. PGF jest obecnie jednym z
+najlepszych algorytmów dla obrazów naturalnych.
 
 %package devel
-Summary:	Header files for libpgf
+Summary:	Header files for libpgf library
 Summary(de.UTF-8):	libpgf Headers
 Summary(es.UTF-8):	Archivos de inclusión y bibliotecas estáticas
 Summary(fr.UTF-8):	en-têtes et bibliothèques statiques
-Summary(pl.UTF-8):	Pliki nagłówkowe libpgf
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libpgf
 Summary(pt_BR.UTF-8):	Arquivos de inclusão e bibliotecas estáticas
 Summary(tr.UTF-8):	başlık dosyaları ve statik kitaplıklar
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 The header files are only needed for development of programs using the
@@ -58,7 +61,7 @@ développement avec la librairie PGF.
 
 %description devel -l pl.UTF-8
 W pakiecie tym znajdują się pliki nagłówkowe, przeznaczone dla
-programistów używających bibliotek PGF.
+programistów używających biblioteki PGF.
 
 %description devel -l pt_BR.UTF-8
 Arquivos de inclusão e bibliotecas estáticas que são necessários
@@ -74,8 +77,7 @@ Summary(de.UTF-8):	Statisch PGF Library
 Summary(pl.UTF-8):	Biblioteka statyczna PGF
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com libpgf
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Provides:	libpgf(APGF)-static = 0.10
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static PGF library.
