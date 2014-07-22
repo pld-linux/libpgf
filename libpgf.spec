@@ -1,20 +1,25 @@
-%bcond_without	tests
-Summary:	PGF image format library
-Summary(pl.UTF-8):	Biblioteka obsługująca format plików PGF
+#
+# Conditional build:
+%bcond_without	tests	# "make check" call
+
+Summary:	PGF (Progressive Graphics File) image format library
+Summary(pl.UTF-8):	Biblioteka obsługująca format plików PGF (Progressive Graphics File)
 Name:		libpgf
-Version:	6.11.42
+Version:	6.14.12
 Release:	1
-License:	LGPL
+License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/libpgf/%{name}-%{version}-src.zip
-# Source0-md5:	9a3c700f0b3e36755f9044a348d6e0ce
+Source0:	http://downloads.sourceforge.net/libpgf/%{name}-src-%{version}.tar.gz
+# Source0-md5:	a2b13832e23ad9026bd249d57b6c26da
 URL:		http://www.libpgf.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	doxygen
 BuildRequires:	graphviz
+BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	unzip
+BuildRequires:	rpmbuild(macros) >= 1.566
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -94,10 +99,13 @@ Bibliotecas estáticas para desenvolvimento com libpgf.
 %prep
 %setup -q -n %{name}
 
+%undos configure.ac
+
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure
 %{__make}
@@ -110,6 +118,14 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# remove man pages with too common names
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man3/[!P]*.3
+# packaed as %doc in -devel
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libpgf.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -118,16 +134,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc README
 %attr(755,root,root) %{_libdir}/libpgf.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libpgf.so.4
+%attr(755,root,root) %ghost %{_libdir}/libpgf.so.6
 
 %files devel
 %defattr(644,root,root,755)
-%doc README doc/html/*
+%doc doc/html/*
 %attr(755,root,root) %{_libdir}/libpgf.so
-%{_pkgconfigdir}/libpgf.pc
 %{_includedir}/libpgf
-%{_mandir}/man3/*.3*
+%{_pkgconfigdir}/libpgf.pc
+%{_mandir}/man3/PGF*.3*
 
 %files static
 %defattr(644,root,root,755)
