@@ -6,7 +6,7 @@ Summary:	PGF (Progressive Graphics File) image format library
 Summary(pl.UTF-8):	Biblioteka obsługująca format plików PGF (Progressive Graphics File)
 Name:		libpgf
 Version:	6.14.12
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libpgf/%{name}-src-%{version}.tar.gz
